@@ -1,0 +1,7 @@
+alias l='ls -CF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias lh='ls -lh'
+alias llh='ls -alh'
+
+alias lsdir='ls -ld */'

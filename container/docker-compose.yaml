@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    # context: ..
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_USER=kyota
+      - POSTGRES_PASSWORD=qwer
+      - POSTGRES_DB=stacks
+    ports:
+      - 12345:5432
+      - 50022:22
+    volumes:
+      - type: bind
+        source: ../container/bashrc-for-container 
+        target: /root/.bashrc
+      - type: bind
+        source: ../database/container_data_volume
+        target: /var/lib/postgresql/data
+      # - ./database/postgresql:
+
