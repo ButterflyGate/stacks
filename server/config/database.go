@@ -12,11 +12,11 @@ type Database struct {
 
 func NewDatabase() *Database {
 	d := &Database{
-		user: GetEnv("DB_USER", "postgres"),
-		pass: GetEnv("DB_PASS", "postgres"),
-		host: GetEnv("DB_HOST", "localhost"),
+		user: GetEnvStr("DB_USER", "postgres"),
+		pass: GetEnvStr("DB_PASS", "postgres"),
+		host: GetEnvStr("DB_HOST", "localhost"),
 		port: GetEnvInt("DB_PORT", 5432),
-		name: GetEnv("DB_NAME", "stacks"),
+		name: GetEnvStr("DB_NAME", "stacks"),
 	}
 	return d
 }

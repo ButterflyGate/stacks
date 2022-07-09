@@ -7,17 +7,17 @@ import (
 )
 
 type Config struct {
-	Database
+	*Database
 }
 
 func NewConfig() *Config {
 	c := new(Config)
-	c.Database = *NewDatabase()
+	c.Database = NewDatabase()
 
 	return c
 }
 
-func GetEnv(key, def string) string {
+func GetEnvStr(key, def string) string {
 	v := os.Getenv(key)
 	if v == "" {
 		v = def
