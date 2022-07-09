@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS 'product' (
+	'id' INTEGER NOT NULL,
+	'name' VARCHAR(64) NOT NULL,
+	'price' INTEGER NOT NULL,
+	'unit' VARCHAR(16) NOT NULL,
+	CONSTRAINT 'pk_product'
+		PRIMARY KEY 'id'
+);
