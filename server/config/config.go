@@ -8,11 +8,13 @@ import (
 
 type Config struct {
 	*Database
+	*HTTP
 }
 
 func NewConfig() *Config {
 	c := new(Config)
 	c.Database = NewDatabase()
+	c.HTTP = NewHTTP()
 
 	return c
 }
