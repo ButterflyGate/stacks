@@ -1,5 +1,7 @@
 package presentation
 
+import "stacks/domain/entity"
+
 type Invoice struct {
 	InvoiceID    string         `json:"invoiceID"`
 	CreatedAt    string         `json:"createdAt"`
@@ -29,6 +31,21 @@ type ChargeDetail struct {
 	Total       int    `json:"total"`
 }
 
-func NewInvoice() *Invoice {
-	return &Invoice{}
+func NewInvoice(src entity.Invoice) *Invoice {
+	return &Invoice{
+		InvoiceID: string(src.ID),
+		CreatedAt: "",
+		Payer: Payer{
+			Name:    src.Payee.Name,
+			Address: "",
+		},
+		Claimant: Claimant{
+			Name:    src.Claimant.Name,
+			Address: "",
+		},
+		QuotationID:  "",
+		DueDate:      "",
+		TotalAmount:  src.Amount,
+		ChargeDetail: []ChargeDetail{},
+	}
 }
