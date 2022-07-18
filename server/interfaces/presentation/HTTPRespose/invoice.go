@@ -28,3 +28,7 @@ type ChargeDetail struct {
 	Tax         int    `json:"tax"`
 	Total       int    `json:"total"`
 }
+
+func NewInvoice() *Invoice {
+	return &Invoice{}
+}

@@ -29,6 +29,9 @@ func GetEnvStr(key, def string) string {
 
 func GetEnvInt(key string, def int) int {
 	vString := os.Getenv(key)
+	if vString == "" {
+		return def
+	}
 	v, err := strconv.Atoi(vString)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "cannot convert %s to int, use default %d: %v", vString, def, err)

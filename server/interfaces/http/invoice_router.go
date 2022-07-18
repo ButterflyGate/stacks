@@ -7,8 +7,10 @@ import (
 )
 
 func addInvoiceRouter(r *chi.Mux) {
-	r.Get("{id}", func(w http.ResponseWriter, r *http.Request) {
+	r.Get("/{id}", func(w http.ResponseWriter, r *http.Request) {
 		invoiceID := chi.URLParam(r, "id")
+
+		w.Write([]byte("hello" + invoiceID))
 
 	})
 }
