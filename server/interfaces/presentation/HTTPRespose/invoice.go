@@ -1,6 +1,9 @@
 package presentation
 
-import "stacks/domain/entity"
+import (
+	"encoding/json"
+	"stacks/domain/entity"
+)
 
 type Invoice struct {
 	InvoiceID    string         `json:"invoiceID"`
@@ -31,8 +34,8 @@ type ChargeDetail struct {
 	Total       int    `json:"total"`
 }
 
-func NewInvoice(src entity.Invoice) *Invoice {
-	return &Invoice{
+func FormatInvoiceToJson(src entity.Invoice) []byte {
+	str := &Invoice{
 		InvoiceID: string(src.ID),
 		CreatedAt: "",
 		Payer: Payer{
@@ -48,4 +51,14 @@ func NewInvoice(src entity.Invoice) *Invoice {
 		TotalAmount:  src.Amount,
 		ChargeDetail: []ChargeDetail{},
 	}
+	return str.json()
+}
+
+func (i *Invoice) json() []byte {
+	v, err := json.Marshal(i)
+	if err != nil {
+		// TODO: log
+		return []byte(err.Error())
+	}
+	return v
 }

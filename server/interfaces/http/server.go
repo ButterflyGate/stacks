@@ -14,13 +14,22 @@ type HTTPServerConfig interface {
 type HTTPServer struct {
 	routers *chi.Mux
 	addr    string
+	// invoicePresenter InvoiceInformationBuilder
 }
 
-func NewHTTPServer(conf HTTPServerConfig) *HTTPServer {
-	return &HTTPServer{
-		routers: createRoutes(),
+func NewHTTPServer(
+	conf HTTPServerConfig,
+	// invoicePresenter InvoiceInformationBuilder,
+) *HTTPServer {
+	httpServer := &HTTPServer{
+		routers: chi.NewMux(),
 		addr:    fmt.Sprintf(":%d", conf.ListenPort()),
+		// invoicePresenter: invoicePresenter,
 	}
+
+	httpServer.buildRoutes()
+
+	return httpServer
 }
 
 func (s *HTTPServer) Run() {
@@ -30,9 +39,8 @@ func (s *HTTPServer) Run() {
 	)
 }
 
-func createRoutes() *chi.Mux {
-	root := chi.NewRouter()
-	addInvoiceRouter(root)
+func (s *HTTPServer) buildRoutes() {
+	// root := chi.NewRouter()
+	s.addInvoiceRouter()
 
-	return root
 }
