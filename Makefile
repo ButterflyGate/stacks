@@ -7,7 +7,7 @@ help:
 
 .PHONY: db-start
 db-start: ## database 起動
-	docker-compose up -f container/docker-compose.yaml postgres
+	docker-compose -f container/docker-compose.yaml up postgres
 
 db-create: ## database image 作成。 password の設定。
 	docker-compose -f container/docker-compose.yaml build \

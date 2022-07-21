@@ -6,21 +6,31 @@ services:
       dockerfile: container/psql-sshd.Dockerfile
       args:
         - PSWD=${PSWD}
-    container_name: db
+    container_name: stacks-db
     restart: always
     environment:
       - POSTGRES_USER=kyota
-      - POSTGRES_PASSWORD=qwer
+      - POSTGRES_PASSWORD=pass
       - POSTGRES_DB=stacks
+      # - POSTGRES_INITDB_ARGS=""
     ports:
       - "12345:5432"
       - "50022:22"
     volumes:
+      # container に login した時用の bash alias など。
       - type: bind
         source: ../container/volumes/bashrc-for-container 
         target: /root/.bashrc
-      # - type: bind
-      #   source: ../container/volumes/postgres
-      #   target: /var/lib/postgresql/data
+      
+      # DBデータ永続用
+      - type: volume
+        source: stacks_postgres
+        target: /var/lib/postgresql/data
 
-
+      # 初回起動時実行用スクリプトの保存場所
+      - type: bind
+        source: ../database/postgresql
+        target: /docker-entrypoint-initdb.d
+      
+volumes:
+  stacks_postgres:

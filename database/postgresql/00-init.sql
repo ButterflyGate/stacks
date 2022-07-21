@@ -1,0 +1,9 @@
+\i /docker-entrypoint-initdb.d/phone.sql;
+\i /docker-entrypoint-initdb.d/date.sql;
+\i /docker-entrypoint-initdb.d/email.sql;
+\i /docker-entrypoint-initdb.d/address.sql;
+\i /docker-entrypoint-initdb.d/person.sql;
+\i /docker-entrypoint-initdb.d/company.sql;
+\i /docker-entrypoint-initdb.d/attendance.sql;
+\i /docker-entrypoint-initdb.d/product.sql;
+\i /docker-entrypoint-initdb.d/invoice.sql;
