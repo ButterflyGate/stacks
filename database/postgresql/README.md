@@ -1,9 +1,9 @@
 # Postgres Initialization Directory
 - this is for initializing database table.
-- be careful of the dependencies of tables. Especially these FOREIGN KEYs.
+- take care organize the dependencies of tables, especially FOREIGN KEYs.
 
 ## Processing Order
-- the order of reading files is ascending of file name.
+- files are processed in ascending order of file name.
 - short description.
     1. first reading file is `00-init.sql`.
     1. next is others which ordered by file name.
